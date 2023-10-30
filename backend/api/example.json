@@ -1,0 +1,77 @@
+{
+    "id": "chatcmpl-8FEyunHVsVcVl1oUpUaguEvXKnIet",
+    "object": "chat.completion",
+    "created": 1698643200,
+    "model": "gpt-3.5-turbo-0613",
+    "choices": [
+    {
+        "index": 0,
+        "message": {
+        "role": "assistant",
+        "content": null,
+        "function_call": {
+        "name": "get_summary_and_problems",
+        "arguments": {
+            "summary": "The speaker is a human rights lawyer from Kyiv who has been defending people and human dignity for many years. They are currently facing a situation where the law does not work, as Russia's troops are causing destruction and committing human rights abuses in Ukraine. The speaker questions how to defend human beings in the 21st century and whether the law or brutal force is more effective. They emphasize that this is not just a war between two states, but a war between authoritarianism and democracy, with Russia attempting to undermine democracy and human rights.",
+            "comprehension_problems": [
+                {
+                    "problem_statement": "What is the speaker's profession?",
+                    "answer_options": {
+                        "first": "Doctor",
+                        "second": "Teacher",
+                        "third": "Human rights lawyer",
+                        "fourth": "Journalist"
+                    },
+                    "answer": 3
+                },
+                {
+                    "problem_statement": "What is currently happening in Ukraine?",
+                    "answer_options": {
+                        "first": "Education programs are being implemented",
+                        "second": "Peace negotiations are taking place",
+                        "third": "Russia's troops are destroying buildings and committing human rights abuses",
+                        "fourth": "International borders are being redrawn"
+                    },
+                    "answer": 3
+                },
+                {
+                    "problem_statement": "What does the speaker suggest when asked how to protect people from Russian aggression?",
+                    "answer_options": {        
+                        "first": "Support peaceful negotiations",
+                        "second": "Give Ukraine weapons",
+                        "third": "Seek help from the UN",
+                        "fourth": "Ignore the situation"
+                    },
+                    "answer": 2
+                },    
+                {
+                    "problem_statement": "What determines our common future according to the speaker?",
+                    "answer_options": {
+                        "first": "The outcome of the war",
+                        "second": "The ability to rely on the law",
+                        "third": "The decision to use brutal force",
+                        "fourth": "The answer to the question of how to defend human beings"
+                    },
+                    "answer": 4
+                },
+                {
+                    "problem_statement": "What does Russia want to convince the world of?",
+                    "answer_options": {
+                        "first": "Democracy and human rights are fake values",
+                        "second": "International borders should be redrawn",
+                        "third": "The UN is an ineffective organization",
+                        "fourth": "Authoritarian leaders should be supported"
+                    },
+                    "answer": 1
+                }
+            ]}
+        }
+    },
+    "finish_reason": "function_call"
+    }],
+    "usage": {
+        "prompt_tokens": 686,
+        "completion_tokens": 536,
+        "total_tokens": 1222
+    }
+}
