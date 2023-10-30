@@ -13,13 +13,16 @@ def get_script(url):
     json_data = json.loads(tag)
     # スクリプトが入ってる辞書のリスト
     ls = json_data["props"]["pageProps"]["transcriptData"]["translation"]["paragraphs"]
+    
+    #print(ls)
 
     transcpipt = []
 
     for data in ls:
         # セクションずつに別れてる
         for d in data["cues"]:
-            text = d["text"]
+            text = ''.join(d["text"])
+            text = text.replace("\n", " ")
             transcpipt.append(text)
-
-    print(*transcpipt)
+    
+    return transcpipt
