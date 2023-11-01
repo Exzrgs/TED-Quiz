@@ -1,0 +1,24 @@
+name: node18
+services:
+  node18:
+    image: docker.io/library/node:18-bookworm
+    container_name: node18
+    hostname: node18
+    init: true
+    tty: true
+    user: 1000:1000
+    working_dir: /home/node/share
+    command: sh -c "sleep infinity"
+    volumes:
+      - type: bind
+        source: ${SHARE_DIR:-.}
+        target: /home/node/share
+    environment:
+      - NPM_CONFIG_USERCONFIG=/home/node/share/.npmrc
+
+# コンテナー内で管理者として作業をする場合は下記コマンドでアタッチ
+#
+# 
+#console
+# docker compose -p node18 exec -u 0:0 node18 bash
+#
