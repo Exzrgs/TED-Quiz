@@ -23,4 +23,4 @@ def get_script(url):
             text = text.replace("\n", " ")
             transcpipt.append(text)
     
-    return transcpipt
+    return ''.join(transcpipt)
