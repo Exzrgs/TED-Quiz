@@ -9,6 +9,12 @@ yarn install
 
 作業する前は
 ```
+docker compose up -d
 docker compose -p node18 exec node18 bash
 ```
 を行うこと
+
+コンテナ停止
+```
+docker compose -p node18 down 
+```

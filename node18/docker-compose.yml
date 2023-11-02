@@ -8,6 +8,8 @@ services:
     tty: true
     user: 1000:1000
     working_dir: /home/node/share
+    ports:
+      - 5173:5173
     command: sh -c "sleep infinity"
     volumes:
       - type: bind
