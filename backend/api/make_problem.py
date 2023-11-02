@@ -4,84 +4,21 @@ from dotenv import load_dotenv
 import json
 import models
 import message
+import open_api
 
 load_dotenv()
 openai.api_key = os.environ["API_KEY"]
 
-system_message = message.system_message
-user_message = message.user_message
-
-my_functions = [
-    {
-        "name": "get_summary_and_problems",
-        "description": "get script summary and Comprehension Questions",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "summary": {
-                    "type": "string", 
-                    "description": "script summary"
-                },
-                "comprehension_problems":{
-                    "type": "array",
-                    "items":{
-                        "type": "object",
-                        "properties": {
-                            "problem_statement": {
-                                "type": "string",
-                                "description": "problem statement"
-                            },
-                            "answer_options":{
-                                "type": "object",
-                                "properties": {
-                                    "first":{
-                                        "type": "string",
-                                        "description": "first answer option"
-                                    },
-                                    "second": {
-                                        "type": "string",
-                                        "description": "second answer option"
-                                    },
-                                    "third": {
-                                        "type": "string",
-                                        "description": "third answer option"
-                                    },
-                                    "fourth": {
-                                        "type": "string",
-                                        "description": "fourth answer option"
-                                    },
-                                }
-                            },
-                            "answer":{
-                                "type": "integer",
-                                "description": "answer number"
-                            }
-                        }
-                    }
-                }
-            },
-            "required": ["summary", "comprehension_problems"]
-        }
-    }
-]
-
-def SendForGPT():
-    res = openai.ChatCompletion.create(
-        model = "gpt-3.5-turbo",
-        messages = [
-            {
-                "role": "system",
-                "content": system_message[0]
-            },
-            {
-                "role": "user",
-                "content": user_message[0],
-            },
-        ],
-        functions=my_functions
-    )
-
-    return res
+def make_problem():
+    system_message = message.system_message
+    user_message = message.user_message
+    my_functions = message.my_functions
+    
+    response = open_api.SendForGPT(system_message, user_message, my_functions)
+    
+    problem_list = get_problem_from_response(response)
+    
+    return problem_list
 
 def get_problem_from_response(response):
     message = response["choices"][0]["message"]["function_call"]["arguments"]
@@ -90,7 +27,6 @@ def get_problem_from_response(response):
     problem_list = message["comprehension_problems"]
     
     return problem_list
-
 
 # json_string = open('example.json', 'r')
 # json_data = json.load(json_string)

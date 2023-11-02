@@ -1,5 +1,4 @@
-system_message = [""]*1
-system_message[0] = \
+system_message = \
 '''
 You are an English teacher at a university. This time, you have been assigned to create English questions to be used in a university entrance exam, using English scripts sent by your users.
 You work for a prestigious university and must produce very good quality questions. In addition, you MUST do function call name "get_summary_and_problems"
@@ -28,8 +27,7 @@ What does the speaker ask the audience to do?
 4. Wait for the war to end.
 '''
 
-user_message = [""]*1
-user_message[0] = \
+user_message = \
 '''
 I have traveled here from Kyiv, where I am a human rights lawyer. I have been applying the law to defend people and human dignity for many years. 
 At present, I am in a situation when the law doesn't work. Russia’s troops are destroying residential buildings, schools, churches, hospitals and museums. 
@@ -45,3 +43,57 @@ Because they couldn’t protect anyone in the war.
 Russia wants to convince that a state with a powerful military potential, a nuclear weapon, can break international order, can dictate its rule to the entire international community, and even forcibly change internationally recognized borders. 
 And if Russia succeeds, it will encourage other authoritarian leaders in the world to do the same.
 '''
+
+my_functions = [
+    {
+        "name": "get_summary_and_problems",
+        "description": "get script summary and Comprehension Questions",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "summary": {
+                    "type": "string", 
+                    "description": "script summary"
+                },
+                "comprehension_problems":{
+                    "type": "array",
+                    "items":{
+                        "type": "object",
+                        "properties": {
+                            "problem_statement": {
+                                "type": "string",
+                                "description": "problem statement"
+                            },
+                            "answer_options":{
+                                "type": "object",
+                                "properties": {
+                                    "first":{
+                                        "type": "string",
+                                        "description": "first answer option"
+                                    },
+                                    "second": {
+                                        "type": "string",
+                                        "description": "second answer option"
+                                    },
+                                    "third": {
+                                        "type": "string",
+                                        "description": "third answer option"
+                                    },
+                                    "fourth": {
+                                        "type": "string",
+                                        "description": "fourth answer option"
+                                    },
+                                }
+                            },
+                            "answer":{
+                                "type": "integer",
+                                "description": "answer number"
+                            }
+                        }
+                    }
+                }
+            },
+            "required": ["summary", "comprehension_problems"]
+        }
+    }
+]
