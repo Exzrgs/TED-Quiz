@@ -9,7 +9,7 @@ from api import make_problem
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=["POST"])
 def api():
     # url = request.form["url"] + "/transcript"
     # transcript = get_script.get_script(url)
