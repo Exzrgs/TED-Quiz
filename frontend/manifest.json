@@ -1,0 +1,20 @@
+{
+"name": "Ted-Quiz",
+"description": "This extension automatically generates listening exercises based on TED Talk videos.",
+"version": "1.0",
+"manifest_version": 3,
+"permissions": ["activeTab", "scripting"],
+"action": {
+    "default_popup": "popup.html",
+    "default_icon": "./assets/my-image.png"
+},
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+H",
+        "mac": "MacCtrl+Shift+H"
+      },
+      "description": "Run extension."
+    }
+  }
+}
