@@ -13,12 +13,12 @@ openai.api_key = os.environ["API_KEY"]
 システムメッセージをGPT3と4で変えたほうがいい
 '''
 def make_by_gpt_four(script_list):
-    version = ""
+    version = "gpt-4"
     sys_message = gpt_param.sys_message_gpt_four
     script = ''.join(script_list)
     my_functions = gpt_param.my_functions
     
-    response = open_api.send_for_gpt(sys_message, "", script, my_functions)
+    response = open_api.send_for_gpt(version, sys_message, "", script, my_functions)
     
     gpt_message = extract_message_from_response(response)
     problems_list = gpt_message["comprehension_problems"]
@@ -49,11 +49,13 @@ def make_by_gpt_three(script_list):
     for part in script_list:
         send_script += part
         
+        # 2000以上ない部分が送られない問題がある
         if len(send_script) >= MAX_LEN:
             if summary != "":
                 sys_message = gpt_param.sys_message_gpt_three
             
-            response = get_sample_response() # open_api.send_for_gpt(version, sys_message, summary, send_script, my_functions)
+            response = open_api.send_for_gpt(version, sys_message, summary, send_script, my_functions)
+            print("get response from gpt")
             gpt_message = extract_message_from_response(response)
             
             summary = gpt_message["summary"]
@@ -72,10 +74,7 @@ def make_by_gpt_three(script_list):
     return selected_problems
 
 def extract_message_from_response(response):
-    message = response["choices"][0]["message"]["function_call"]["arguments"]
-
-    # summary = message["summary"]
-    # problem_list = message["comprehension_problems"]
+    message = json.loads(response["choices"][0]["message"]["function_call"]["arguments"])
     
     return message
 
