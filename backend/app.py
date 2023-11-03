@@ -3,19 +3,30 @@ sys.path.append('./api')
 
 from flask import Flask
 from flask import request
-from api import get_script
+from api import script
 from api import models
-from api import make_problem
+from api import problem
+import json
+
+test_url = "https://www.ted.com/talks/david_mcwilliams_the_power_of_unconventional_thinking/transcript"
 
 app = Flask(__name__)
 
 @app.route("/", methods=["POST"])
 def api():
-    # url = request.form["url"] + "/transcript"
-    # transcript = get_script.get_script(url)
+    url = request.headers.get("url") + "/transcript"
+    script_list = script.scrape_script(url)
     
-    # problem_list = make_problem.make_problem(transcript)
+    print("get script")
     
-    problem_list = make_problem.get_sample_problem()
+    problem_list = problem.make_by_gpt_four(script_list)
     
-    return problem_list
+    # problem_list = problem.get_sample_problem()
+    
+    print("get problems")
+    
+    print(problem_list)
+    
+    response = json.dumps(problem_list)
+    
+    return response

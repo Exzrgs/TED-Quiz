@@ -20,7 +20,8 @@ def send_for_gpt(version, system_message, summary, script, my_functions):
                 "content": "script: " + script,
             }]
     
-    res = openai.ChatCompletion.create(
+    try:
+        res = openai.ChatCompletion.create(
         model = version,
         messages = [
             {
@@ -30,6 +31,8 @@ def send_for_gpt(version, system_message, summary, script, my_functions):
             *user_message
         ],
         functions=my_functions
-    )
+        )
+    except:
+        print("gpt error")
 
     return res
