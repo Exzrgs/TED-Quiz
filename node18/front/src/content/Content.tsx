@@ -12,7 +12,7 @@ const bucket = getBucket<MyBucket>('my_bucket', 'sync');
 const Content = () => {
   //ここにapiからうけとったやつストレージからぶち込む
   const translateSelectedNumber = {'first':1,'second':2,'third':3,"fourth":4};
-//  const selectsFromGpt = get_problems()
+  // const selectsFromGpt = get_problems()
   const selectsFromGpt = [
       {"problem_statement":"statement",
       "answer_options": {'first':"answer1",'second':"answer2",'third':"answer3","fourth":"answer4"},
