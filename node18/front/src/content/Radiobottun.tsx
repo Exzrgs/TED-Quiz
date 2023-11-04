@@ -11,12 +11,14 @@ interface Radio {
 // "third",
 // "fourth"
 
-const RadioButton = ({selects,whichAnswer}) => {
+const RadioButton = ({selects,whichAnswer,onSelect}) => {
     /** 選択中のラジオボタンvalue */
     const [selected, setSelected] = useState("");
     /** ラジオボタン切り替えイベント */
-    const changeValue = (event: React.ChangeEvent<HTMLInputElement>) => setSelected(event.target.value);
-    /** ラジオボタン */
+    const changeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSelected(event.target.value);
+        onSelect(whichAnswer, event.target.value); // onSelect を呼び出して選択された値を更新
+      };    /** ラジオボタン */
     const radioButtons: Radio[] = [
         {
             label: selects[whichAnswer].answer_options.first,
