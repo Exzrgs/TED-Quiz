@@ -82,7 +82,9 @@ def get_sample_response():
     json_string = open('./api/example.json', 'r')
     json_data = json.load(json_string)
     
-    return json_data
+    message = json_data["choices"][0]["message"]["function_call"]["arguments"]["comprehension_problems"]
+    
+    return message
 
 # for problem in problem_list:
 #     statement = problem["problem_statement"]
