@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@mantine/core": "^7.1.7",
+    "@mantine/hooks": "^7.1.7"
+  }
+}
