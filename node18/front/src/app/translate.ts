@@ -1,29 +1,29 @@
-//こんにちは
-type Result = {
-    translations: [
+type Problems = {
+  problems: [
       {
-        detected_source_language: string;
-        text: string;
+          problem_statement: string;
+          answer_options: {
+              first: string;
+              second: string;
+              third: string;
+              fourth: string;
+          }
+          answer: number;
       }
-    ];
-  };
-  
-  export const translate = async (selectedText: string, userTargetLang: string) => {
-    const API_KEY = 'あなたのAPIキー';
-    const API_URL = 'https://api-free.deepl.com/v2/translate';
-    // const API_URL =
-    //   'https://script.google.com/macros/s/AKfycbyVBjR48fqbnz3ZiP8txnq4LcJ_RxL2F_IiRvInBfxfWBWWDEdAqOU8L79qGE8A1tKQIw/exec';
-    const params = {
-      auth_key: API_KEY,
-      text: selectedText,
-      target_lang: userTargetLang,
-    };
-    const query = new URLSearchParams(params);
-    const url = API_URL + '?' + query;
-    const res = await fetch(url, {
-      method: 'GET',
+  ]
+};
+
+export const get_problems = async () => {
+  const url = "http://127.0.0.1:5000/"
+  const res = await fetch(url, {
+      headers: {
+          URL: "https://www.ted.com/talks/lucy_mcbath_my_quest_to_end_the_horror_of_gun_violence_in_the_us" // location.href
+      },
+      method: 'POST',
       mode: 'cors',
-    });
-    const json: Result = await res.json();
-    return json.translations[0].text;
-  };
+  });
+  // const result = await res.json();
+  const result: Problems = await res.json();
+  console.log(result[0])
+  return result
+};

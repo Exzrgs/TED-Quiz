@@ -19,9 +19,9 @@ def api():
     
     print("get script")
     
-    problem_list = problem.make_by_gpt_four(script_list)
+    # problem_list = problem.make_by_gpt_four(script_list)
     
-    # problem_list = problem.get_sample_problem()
+    problem_list = problem.get_sample_response()
     
     print("get problems")
     
