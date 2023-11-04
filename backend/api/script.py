@@ -1,9 +1,8 @@
 from urllib import request
 from bs4 import BeautifulSoup
-import pprint
 import json
 
-def get_script(url):
+def scrape_script(url):
     response = request.urlopen(url)
     soup = BeautifulSoup(response, 'html.parser')
     response.close()
@@ -14,12 +13,13 @@ def get_script(url):
     # スクリプトが入ってる辞書のリスト
     ls = json_data["props"]["pageProps"]["transcriptData"]["translation"]["paragraphs"]
 
-    transcpipt = []
+    scpipt_list = []
 
     for data in ls:
         # セクションずつに別れてる
         for d in data["cues"]:
-            text = d["text"]
-            transcpipt.append(text)
-
-    print(*transcpipt)
+            text = ''.join(d["text"])
+            text = text.replace("\n", " ")
+            scpipt_list.append(text)
+    
+    return scpipt_list
