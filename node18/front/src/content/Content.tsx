@@ -4,12 +4,14 @@ import { getBucket } from '@extend-chrome/storage';
 import { Radio, Group } from '@mantine/core';
 import RadioButton from './Radiobottun';
 import {get_problems} from '../app/translate'
+import Header from './Header';
+
 interface MyBucket {
   targetLang: string;
 }
 const bucket = getBucket<MyBucket>('my_bucket', 'sync');
 
-const Content = async () => {
+const Content = async ({open}) => {
   //ここにapiからうけとったやつストレージからぶち込む
   const translateSelectedNumber = {'first':1,'second':2,'third':3,"fourth":4};
   const selectsFromGpt = await get_problems()
@@ -61,10 +63,10 @@ const handleSelect = (whichAnswer, value) => {
 
 // 問題を生成する関数
 const createProblems = async () => {
+  console.log("createProblems conducted")
   const selectsFromGpt = await get_problems();
   console.log(selectsFromGpt);
 };
-
 
 // 正解を確認する関数
 const checkAnswers = () => {
@@ -91,10 +93,13 @@ const checkAnswers = () => {
     `あなたのスコアは${score}/${correctAnswers.length}です。\nそのうち正解した問題は、` + correctLists+`です！`);
 };
 
-    return (
+
+  if(!open){return null}
+  return (
       <div className="fixed z-[999] bottom-2 right-2 w-full max-w-md h-screen overflow-y-auto shadow-xl border-[1px] bg-black bg-opacity-50">
                         <button onClick={createProblems}>問題生成</button>
         <div className="flex justify-center mt-2 text-base">問題</div>
+        <Header/>
         {selectsFromGpt.map((select, index) => (
           <RadioButton 
             key={index}

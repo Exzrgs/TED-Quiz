@@ -1,0 +1,35 @@
+/* styles.css */
+
+.line-1 {
+    transform: translate(0, -10px);
+  }
+  
+  .line-2 {
+    transform: translate(0, 10px);
+  }
+  
+  .toggleButon[aria-expanded="true"] > .line-1 {
+    transform: translate(0, 0) rotate(-45deg);
+  }
+  
+  .toggleButon[aria-expanded="true"] > .line-2 {
+    transform: translate(0, 0) rotate(45deg);
+  }
+
+  .navigation {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 5rem 2rem;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 100vh;
+    background-color: white;
+  }
+  
+  .navigation[aria-hidden="false"] {
+    display: flex;
+  }
