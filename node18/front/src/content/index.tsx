@@ -9,6 +9,11 @@ import { proxyStore } from '../app/proxyStore';
 import Content from './Content';
 import '@mantine/core/styles.css';
 import { MantineProvider,createTheme } from '@mantine/core';
+import { FC, useState } from "react";
+import { ToggleButton } from "./ToggleButton";
+import "./styles.css";
+import Header from './Header';
+
 proxyStore.ready().then(() => {
   const contentRoot = document.createElement('div');
   contentRoot.id = 'my-extension-root';
@@ -44,11 +49,14 @@ proxyStore.ready().then(() => {
   shadowWrapper.style.display = 'contents';
   shadowRoot.appendChild(shadowWrapper);
 
+  
+
   createRoot(shadowWrapper).render(
     <React.StrictMode>
       <Provider store={proxyStore}>
       <MantineProvider>
-        <Content />
+        <Header/>
+        {/* <Content /> */}
       </MantineProvider>
       </Provider>
     </React.StrictMode>
