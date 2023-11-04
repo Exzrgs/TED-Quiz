@@ -11,31 +11,33 @@ interface MyBucket {
 }
 const bucket = getBucket<MyBucket>('my_bucket', 'sync');
 
-const Content = ({open}) => {
+const Content = async ({open}) => {
   //ここにapiからうけとったやつストレージからぶち込む
   const translateSelectedNumber = {'first':1,'second':2,'third':3,"fourth":4};
-//  const selectsFromGpt = get_problems()
-  let selectsFromGpt = [
-      {"problem_statement":"statement",
-      "answer_options": {'first':"answer1",'second':"answer2",'third':"answer3","fourth":"answer4"},
-      "answer":1
-      },
-      {"problem_statement":"statement",
-      "answer_options": {'first':"answer1",'second':"answer2",'third':"answer3","fourth":"answer4"},
-      "answer":1
-      },
-      {"problem_statement":"statement",
-      "answer_options": {'first':"answer1",'second':"answer2",'third':"answer3","fourth":"answer4"},
-      "answer":1
-      },
-      {"problem_statement":"statement",
-      "answer_options": {'first':"answer1",'second':"answer2",'third':"answer3","fourth":"answer4"},
-      "answer":1
-      },
-      {"problem_statement":"statement",
-      "answer_options": {'first':"answer1",'second':"answer2",'third':"answer3","fourth":"answer4"},
-      "answer":1
-      }]
+  const selectsFromGpt = await get_problems()
+  // let selectsFromGpt = [
+  //     {"problem_statement":"statement",
+  //     "answer_options": {'first':"answer1",'second':"answer2",'third':"answer3","fourth":"answer4"},
+  //     "answer":1
+  //     },
+  //     {"problem_statement":"statement",
+  //     "answer_options": {'first':"answer1",'second':"answer2",'third':"answer3","fourth":"answer4"},
+  //     "answer":1
+  //     },
+  //     {"problem_statement":"statement",
+  //     "answer_options": {'first':"answer1",'second':"answer2",'third':"answer3","fourth":"answer4"},
+  //     "answer":1
+  //     },
+  //     {"problem_statement":"statement",
+  //     "answer_options": {'first':"answer1",'second':"answer2",'third':"answer3","fourth":"answer4"},
+  //     "answer":1
+  //     },
+  //     {"problem_statement":"statement",
+  //     "answer_options": {'first':"answer1",'second':"answer2",'third':"answer3","fourth":"answer4"},
+  //     "answer":1
+  //    }]
+
+  console.log("problems: ", selectsFromGpt)
 
   const [lang, setLang] = useState('EN');
   const [selects, setSelects] = useState(selectsFromGpt);
@@ -59,13 +61,12 @@ const handleSelect = (whichAnswer, value) => {
   setAnswers(prevAnswers => ({ ...prevAnswers, [whichAnswer]: value }));
 };
 
-//　問題を生成する関数
-const createProblems = () => {
+// 問題を生成する関数
+const createProblems = async () => {
   console.log("createProblems conducted")
-//  let selectsFromGpt = get_problems();
-//  console.log(selectsFromGpt);
+  const selectsFromGpt = await get_problems();
+  console.log(selectsFromGpt);
 };
-
 
 // 正解を確認する関数
 const checkAnswers = () => {
