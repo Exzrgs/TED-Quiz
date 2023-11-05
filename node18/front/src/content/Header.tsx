@@ -13,26 +13,42 @@ import { FC, useState } from "react";
 import { ToggleButton } from "./ToggleButton";
 import { Navigation } from './Navigation';
 import "./styles.css";
-// import iconImage from "../../public/images/icon.png"
-import iconImage from "./icon.png"
+import { Button } from '@mantine/core';
 
+// import iconImage from "../../public/images/icon.png"
+// import iconImage from "./icon.png"
 
 const Header: FC = () => {
-  const [open, setOpen] = useState(false);
-  const toggleFunction = () => {
-    setOpen((prevState) => !prevState);
-  };
+    const [open, setOpen] = useState(false);
+    const toggleFunction = () => {
+      setOpen((prevState) => !prevState);
+    };
   
     return (
-<div className="fixed z-[999] bottom-2 right-2 w-full max-w-md h-screen overflow-y-auto shadow-xl border-[1px] bg-black bg-opacity-50">
-        {/* <button onClick={toggleFunction}>TedQuiz</button> */}
-
-    <img src={iconImage} onClick={toggleFunction}/>
-    <Content open={open}/>
-    </div>
-    
+      <div className="fixed top-0 right-0 p-4">
+        {open ? (
+          <>
+            <button
+              type="button"
+              className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              onClick={toggleFunction}
+            >
+              Close
+            </button>
+            <Content open={open} />
+          </>
+        ) : (
+          <button
+            type="button"
+            className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+            onClick={toggleFunction}
+          >
+            TedQuiz
+          </button>
+        )}
+      </div>
     );
-    
-
-};
-export default Header;
+  };
+  
+  export default Header;
+  

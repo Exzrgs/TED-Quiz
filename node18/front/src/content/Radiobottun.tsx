@@ -60,7 +60,7 @@ const RadioButton = ({selects,whichAnswer,onSelect}) => {
                 )
             })}
             </div>
-            <div>{selected}が選択されています.</div>
+            <div>You've selected {selected}.</div>
         </div>
     )
     }

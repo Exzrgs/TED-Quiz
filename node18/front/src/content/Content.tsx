@@ -5,37 +5,36 @@ import { Radio, Group } from '@mantine/core';
 import RadioButton from './Radiobottun';
 import {get_problems} from '../app/translate'
 import Header from './Header';
-
 interface MyBucket {
   targetLang: string;
 }
 const bucket = getBucket<MyBucket>('my_bucket', 'sync');
 
-const Content = async ({open}) => {
+const Content = ({open}) => {
   //ここにapiからうけとったやつストレージからぶち込む
   const translateSelectedNumber = {'first':1,'second':2,'third':3,"fourth":4};
-  const selectsFromGpt = await get_problems()
-  // let selectsFromGpt = [
-  //     {"problem_statement":"statement",
-  //     "answer_options": {'first':"answer1",'second':"answer2",'third':"answer3","fourth":"answer4"},
-  //     "answer":1
-  //     },
-  //     {"problem_statement":"statement",
-  //     "answer_options": {'first':"answer1",'second':"answer2",'third':"answer3","fourth":"answer4"},
-  //     "answer":1
-  //     },
-  //     {"problem_statement":"statement",
-  //     "answer_options": {'first':"answer1",'second':"answer2",'third':"answer3","fourth":"answer4"},
-  //     "answer":1
-  //     },
-  //     {"problem_statement":"statement",
-  //     "answer_options": {'first':"answer1",'second':"answer2",'third':"answer3","fourth":"answer4"},
-  //     "answer":1
-  //     },
-  //     {"problem_statement":"statement",
-  //     "answer_options": {'first':"answer1",'second':"answer2",'third':"answer3","fourth":"answer4"},
-  //     "answer":1
-  //    }]
+  // const selectsFromGpt = await get_problems()
+  let selectsFromGpt = [
+      {"problem_statement":"statement",
+      "answer_options": {'first':"answer1",'second':"answer2",'third':"answer3","fourth":"answer4"},
+      "answer":1
+      },
+      {"problem_statement":"statement",
+      "answer_options": {'first':"answer1",'second':"answer2",'third':"answer3","fourth":"answer4"},
+      "answer":1
+      },
+      {"problem_statement":"statement",
+      "answer_options": {'first':"answer1",'second':"answer2",'third':"answer3","fourth":"answer4"},
+      "answer":1
+      },
+      {"problem_statement":"statement",
+      "answer_options": {'first':"answer1",'second':"answer2",'third':"answer3","fourth":"answer4"},
+      "answer":1
+      },
+      {"problem_statement":"statement",
+      "answer_options": {'first':"answer1",'second':"answer2",'third':"answer3","fourth":"answer4"},
+      "answer":1
+     }]
 
   console.log("problems: ", selectsFromGpt)
 
@@ -96,21 +95,76 @@ const checkAnswers = () => {
 
   if(!open){return null}
   return (
-      <div className="fixed z-[999] bottom-2 right-2 w-full max-w-md h-screen overflow-y-auto shadow-xl border-[1px] bg-black bg-opacity-50">
-                        <button onClick={createProblems}>問題生成</button>
-        <div className="flex justify-center mt-2 text-base">問題</div>
-        <Header/>
+      <div className="fixed z-[999] bottom-2 right-2 w-full max-w-md h-screen overflow-y-auto shadow-xl border-[1px] bg-black bg-opacity-80">
+                        <div className="p-4 flex justify-center mt-4">
+                        <ol class="items-center w-full space-y-4 sm:flex sm:space-x-8 sm:space-y-0">
+    <li class="flex items-center text-blue-600 dark:text-gray-400 space-x-2.5">
+        <span class="flex items-center justify-center w-8 h-8 border border-gray-500 rounded-full shrink-0 dark:border-blue-500">
+            1
+        </span>
+        <span>
+            <h3 class="font-medium leading-tight">Create Questions</h3>
+        </span>
+    </li>
+    <li class="flex items-center text-gray-500 dark:text-gray-400 space-x-2.5">
+        <span class="flex items-center justify-center w-8 h-8 border border-gray-500 rounded-full shrink-0 dark:border-gray-400">
+            2
+        </span>
+        <span>
+            <h3 class="font-medium leading-tight">Listen and Answer</h3>
+        </span>
+    </li>
+    <li class="flex items-center text-gray-500 dark:text-gray-400 space-x-2.5">
+        <span class="flex items-center justify-center w-8 h-8 border border-gray-500 rounded-full shrink-0 dark:border-gray-400">
+            3
+        </span>
+        <span>
+            <h3 class="font-medium leading-tight">Check the answers</h3>
+        </span>
+    </li>
+</ol>
+</div>
+                        
+                        
+                        <div className="flex justify-center mt-4">
+  <button
+    type="button"
+    className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+    onClick={createProblems}
+  >
+    Create Questions
+  </button>
+</div>
+                        
+                        
+                        <div className="flex justify-center mt-2 text-base">Questions</div>
         {selectsFromGpt.map((select, index) => (
-          <RadioButton 
-            key={index}
-            selects={selects} 
-            whichAnswer={index} 
-            onSelect={handleSelect} // onSelect プロップとして関数を渡す
-          />
-        ))}
-                <button onClick={checkAnswers}>Check Answers</button>
+        <li class="px-8 py-4 border-b border:gray-100 dark:border-gray-600">
+
+  <div key={index} className="p-4 border rounded-lg mb-4 bg-white bg-opacity-80">
+    <div className="font-semibold mb-2 border-b border:gray-100">{select.problem_statement}</div>
+    <RadioButton 
+      selects={selects} 
+      whichAnswer={index} 
+      onSelect={handleSelect} // onSelect プロップとして関数を渡す
+    />
+  </div>
+  </li>
+))}
+<div className="flex justify-center mt-4 mb-4">
+  <button
+    type="button"
+    className="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+    onClick={checkAnswers}
+  >
+    Check the Answers
+  </button>
+</div>
+
+
 
       </div>
+      
     );
     
 return (
