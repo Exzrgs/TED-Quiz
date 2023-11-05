@@ -6,11 +6,6 @@ interface Radio {
     value: string
 }
 
-// "first",
-// "second",
-// "third",
-// "fourth"
-
 const RadioButton = ({selects,whichAnswer,onSelect}) => {
     /** 選択中のラジオボタンvalue */
     const [selected, setSelected] = useState("");
@@ -65,7 +60,7 @@ const RadioButton = ({selects,whichAnswer,onSelect}) => {
                 )
             })}
             </div>
-            <div>{selected}が選択されています.</div>
+            <div>You've selected {selected}.</div>
         </div>
     )
     }
