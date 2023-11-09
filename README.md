@@ -1,4 +1,7 @@
 # TED-Quiz
+開発意義と機能説明スライド
+https://docs.google.com/presentation/d/1UngsmB2HpiRu3f-NBDc8LkW4q_-3kbL1g29didYV5aM/edit#slide=id.p
+
 ## backend
 ```
 cd backend
