@@ -1,4 +1,11 @@
 # TED-Quiz
+## backend
+```
+cd backend
+run flusk
+```
+
+## frontend
 ```
 cd node18
 docker compose up -d
