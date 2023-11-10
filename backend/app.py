@@ -5,7 +5,6 @@ from flask import Flask
 from flask import request
 from flask_cors import CORS
 from api import script
-from api import models
 from api import problem
 import json
 
