@@ -17,8 +17,8 @@ def scrape_script(url):
 
     for data in ls:
         # セクションずつに別れてる
-        for d in data["cues"]:
-            text = ''.join(d["text"])
+        for text_list in data["cues"]["text"]:
+            text = ''.join(text_list)
             text = text.replace("\n", " ")
             scpipt_list.append(text)
     
