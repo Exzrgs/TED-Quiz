@@ -1,7 +1,5 @@
 # TED-Quiz
-紹介スライド
-
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTF1o_Bko4Y0gO_4D_Kap3ajTQjRpjoD0aaq9UKV5QGkrqZHHRHF2_CBuXj7N_cnuQ69mKQCNdMa-8Y/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+[紹介スライド](https://speakerdeck.com/exzrgs/ted-quiz)
 
 ## backend
 必要なパッケージをインストール後
