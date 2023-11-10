@@ -1,13 +1,11 @@
 # TED-Quiz
-開発意義と機能説明スライド
-
-
-https://docs.google.com/presentation/d/1UngsmB2HpiRu3f-NBDc8LkW4q_-3kbL1g29didYV5aM/edit#slide=id.p
+[説明スライド](https://docs.google.com/presentation/d/1UngsmB2HpiRu3f-NBDc8LkW4q_-3kbL1g29didYV5aM/edit#slide=id.p)
 
 ## backend
+必要なパッケージをインストールしてから
 ```
 cd backend
-run flusk
+run flask
 ```
 
 ## frontend
