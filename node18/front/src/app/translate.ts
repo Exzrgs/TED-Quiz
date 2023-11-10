@@ -13,7 +13,7 @@ type Problems = {
   ]
 };
 
-export const get_problems = async () => {
+export const get_problems = async ({showLoading}) => {
 //   const apiURL = "http://127.0.0.1:5000/"
 //   let tedURL = location.href
 //   if (tedURL.slice(-11) == "/transcript"){

@@ -60,7 +60,7 @@ const RadioButton = ({selects,whichAnswer,onSelect}) => {
                 )
             })}
             </div>
-            <div>You've selected {selected}.</div>
+            {/* <div>You've selected {selected}.</div> */}
         </div>
     )
     }
