@@ -5,7 +5,6 @@ from flask import Flask
 from flask import request
 from flask_cors import CORS
 from api import script
-from api import models
 from api import problem
 import json
 
@@ -23,9 +22,11 @@ def api():
     
     print("get script")
     
-    # problem_list = problem.make_by_gpt_four(script_list)
+    # 本番用
+    problem_list = problem.make_by_gpt_four(script_list)
     
-    problem_list = problem.get_sample_response()
+    # フロントエンドのテスト用サンプルデータ
+    # problem_list = problem.get_sample_response()
     
     print("get problems")
     
