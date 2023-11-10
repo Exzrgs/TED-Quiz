@@ -23,9 +23,11 @@ def api():
     
     print("get script")
     
-    # problem_list = problem.make_by_gpt_four(script_list)
+    # 本番用
+    problem_list = problem.make_by_gpt_four(script_list)
     
-    problem_list = problem.get_sample_response()
+    # フロントエンドのテスト用サンプルデータ
+    # problem_list = problem.get_sample_response()
     
     print("get problems")
     
